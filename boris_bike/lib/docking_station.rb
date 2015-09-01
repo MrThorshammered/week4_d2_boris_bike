@@ -37,4 +37,8 @@ class DockingStation
 		@bikes.delete broken_bike
 	end
 
+	def bikes_unload bike
+		@bikes<<bike
+	end
+
 end

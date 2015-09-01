@@ -1,3 +1,5 @@
+require_relative './van'
+
 class Garage
 
 	def initialize
@@ -20,6 +22,9 @@ class Garage
 		@bike << bike
 	end
 
+	def bikes_load bike
+		@bike.delete bike
+	end
 
 
 end

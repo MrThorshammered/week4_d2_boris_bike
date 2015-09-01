@@ -19,4 +19,8 @@ class Van
 		bike_count == @capacity
 	end
 
+	def van_load bike
+		@bike << bike
+	end
+
 end

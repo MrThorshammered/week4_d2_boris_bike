@@ -9,6 +9,8 @@ describe Van do
 	end
 
 	let(:van) { Van.new({capacity: 5}) }
+	let(:station) {DockingStation.new}
+
 
 	it 'van should be empty after we create it' do
 		expect(van.bike_count).to eq 0
@@ -25,7 +27,11 @@ describe Van do
 		expect(van.van_full?).to be true
 	end
 
-	it 'van should unload bikes to garage' do
+	it 'van should unload bikes to station' do
+		bike = Bike.new
+		van.van_load(bike)
+		station.bikes_unload(bike)
+		expect(station.bike_count).to eq 1
 	end
 
 
