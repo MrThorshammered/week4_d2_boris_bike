@@ -1,6 +1,7 @@
 require_relative './spec_helper'
 require_relative '../lib/docking_station'
 require_relative '../lib/bike'
+require_relative '../lib/van'
 
 describe DockingStation do
 
@@ -10,6 +11,7 @@ describe DockingStation do
 
 	let(:station) { DockingStation.new({capacity: 20}) }
 	let(:bike) { Bike.new }
+	let(:van) {Van.new}
 
 	it 'should be empty after we build it' do
 		expect(station.bike_count).to eq 0
@@ -49,6 +51,20 @@ describe DockingStation do
 		station.dock(broken_bike)
 
 		expect(station.availible_bikes).to eq [working_bike]
+	end
+
+	it 'should load broken bikes into van' do
+		broken_bike = Bike.new
+		van.van_dock(broken_bike)
+		expect(van.bike_count).to eq 1
+	end
+
+	it 'should lower the bike counter by the amount of broken bikes' do
+		broken_bike = Bike.new
+		broken_bike.break
+		station.dock(broken_bike)
+		station.van_dock(broken_bike)
+		expect(station.bike_count).to eq 0
 	end
 
 end

@@ -28,4 +28,13 @@ class DockingStation
 		@bikes.reject {|bike| bike.broken? }
 	end
 
+	def van_load
+		@bikes.select { |bike| bike.broken? }
+		van.van_dock(broken_bike)
+	end
+
+	def van_dock broken_bike
+		@bikes.delete broken_bike
+	end
+
 end
